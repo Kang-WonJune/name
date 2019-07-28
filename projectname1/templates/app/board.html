@@ -1,0 +1,54 @@
+{% extends 'shared/base.html' %}
+{% block title %}{{board.title}}{% endblock %}
+{% block style %}
+<!--        <style>-->
+<!--                h1{-->
+<!--                    color: #cc1111;-->
+<!--                    }-->
+<!--                pre{-->
+<!--                    color: purple;-->
+<!--                 }-->
+<!--        </style>-->
+{% endblock %}
+{% block body %}
+    <center>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-1@1 uk-card-hover">
+            {% if board %}
+            <h1>{{board.title}}</h1>
+            <pre>{{board.content}}</pre>
+            <div>
+                {% load disqus_tags %}
+                {% disqus_show_comments %}
+            </div>
+            {% else %}
+             <p>Empty.....</p>
+            {% endif %}
+        </div>
+<!--        <ul class="uk-comment-list">-->
+<!--            {% for comment in board.comments.all %}-->
+<!--                <li>-->
+<!--                    <article class="uk-comment">{{comment.content}}</article>-->
+<!--                </li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--        <form action="/app/board/{{board.id}}/comment/new" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            {{form.as_p}}-->
+<!--            <input type="submit" value="댓글 추가">-->
+<!--        </form>-->
+    </center>
+<article class="uk-comment">
+    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
+            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                <li><a href="#">12 days ago</a></li>
+                <li><a href="#">Reply</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="uk-comment-body">
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    </div>
+</article>
+{% endblock %}
